@@ -49,7 +49,7 @@ export class UserService {
   // Method to add a new user
   public async addUser(createUserDto: CreateUserDto): Promise<any> {
     try {
-      const { userName, email, password } = createUserDto;
+      const { userName, email, password, shopId = 0 } = createUserDto;
       const saltRounds = 10;
 
       //check if email already in registered
@@ -65,8 +65,8 @@ export class UserService {
       const hashedPassword: string = await bcrypt.hash(password, saltRounds);
 
       // Define the stored procedure query
-      const query: string = 'CALL adduser(?,?,?)';
-      const params: any[] = [userName, email, hashedPassword];
+      const query: string = 'CALL adduser(?,?,?,?)';
+      const params: any[] = [userName, email, hashedPassword, shopId];
 
       // Execute the query using EntityManager
       await this.entityManager.query(query, params);

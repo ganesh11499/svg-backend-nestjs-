@@ -3,6 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { ShopRegisterModule } from './shop-register/shop-register.module';
+import { ShopRegister } from './shop-register/entities/shop-register.entity';
 
 
 @Module({
@@ -22,11 +24,12 @@ import { User } from './user/entities/user.entity';
         password: configService.get('DB_PASSWORD', 'password'), // database password from .env
         database: configService.get('DB_NAME', 'svgflutter'), // database name from .env
         synchronize: true, // synchronize schema, do not use in production
-        entities: [User],  // Register entities
+        entities: [User, ShopRegister],  // Register entities
        
       }),
     }),
     UserModule,
+    ShopRegisterModule,
   ],
 })
 export class AppModule {}

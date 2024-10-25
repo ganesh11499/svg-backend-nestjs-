@@ -7,7 +7,7 @@ async function bootstrap() {
 
   //Use cors middleware
   app.use(cors({
-    origin : 'http://localhost:54335',
+    origin : 'http://localhost:61469',
     methods : "POST, PUT, GET, PATCH, DELETE",
     allowedHeaders: 'Content-Type, Authorization',
   }))
